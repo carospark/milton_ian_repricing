@@ -1,0 +1,42 @@
+# Paths to the two sibling repositories and the exact output files this project reads.
+# Nothing here is duplicated or rebuilt locally; every file is read in place and never modified.
+siblings:
+  issuance: /Users/caropark/cat-bond-issuance
+  flow: /Users/caropark/cat-bond-flow-analysis
+
+inputs:
+  # cat-bond-issuance (Artemis parser; every field carries value, __conf, __flags)
+  deals: "{issuance}/data/deals.csv"            # one row per deal: perils_covered, trigger_type, deal_url
+  tranches: "{issuance}/data/tranches.csv"      # one row per tranche: tranche_id (Class), expected_loss, attachment_probability
+  # cat-bond-flow-analysis
+  bridge: "{flow}/data/bridge.csv"              # strict bridge: deal_url <-> cusip_id, match_confidence, evidence columns
+  bridge_program: "{flow}/data/bridge_program.csv"   # programme-level attribution for CUSIPs the strict bridge refused
+  trace_clean: "{flow}/data/trace_trades_clean.csv"  # one row per cleaned TRACE 144A trade (dealer_side, contra_party)
+  deal_daily_trades: "{flow}/data/deal_daily_trades.csv"   # deal/CUSIP/day aggregate (reference only; sample.py re-aggregates from trace_clean)
+  deal_hazard_map: "{flow}/data/deal_hazard_map.csv"  # deal_url -> hazard_class, region, perils_covered
+  nport_holdings: "{flow}/data/processed/nport/fund_holdings.csv"  # fund-reported titles, carry the Class per CUSIP
+  prediction_db: "{flow}/data/raw/tier1/prediction_market_history.sqlite3"
+  # NHC archive: not present locally as of 2026-10-25. Leave null until pulled.
+  nhc_archive: null
+
+storms:
+  milton:
+    landfall: 2024-10-09
+    label: "Hurricane Milton, Florida landfall 9 Oct 2024"
+  ian:
+    landfall: 2022-09-28
+    label: "Hurricane Ian, Florida landfall 28 Sep 2022"
+
+windows:
+  pre_days: 45          # window opens landfall - 45 days
+  post_days: 60         # window closes landfall + 60 days
+  storm_week_pre_days: 4   # storm week = landfall - 4 .. landfall + 3 (8 calendar days)
+  storm_week_post_days: 3
+
+# Florida exposure as mapped by cat-bond-flow-analysis/src/event_check.py: a hurricane_or_named_storm
+# pair whose region is Florida or a US region containing it, unless the peril text excludes Florida.
+exposure:
+  hurricane_class: hurricane_or_named_storm
+  florida_regions: [florida, us, southeast_us, gulf_coast]
+
+output_dir: data/derived
