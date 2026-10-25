@@ -1,0 +1,18 @@
+# Coverage screen only. Do not replace the project's study cases automatically.
+# Florida and Gulf hurricane landfalls 2016-2024, plus the Texas benchmark Beryl.
+# Ian and Milton are included. Candidates are selected on landfall geography and
+# observable TRACE coverage, never on secondary-price changes. This is a targeted
+# comparison, not an exhaustive census of US hurricane landfalls.
+storms:
+  hermine: {landfall: 2016-09-02, region: florida, nhc_id: al092016}
+  irma: {landfall: 2017-09-10, region: florida, nhc_id: al112017}
+  michael: {landfall: 2018-10-10, region: florida, nhc_id: al142018}
+  laura: {landfall: 2020-08-27, region: louisiana, nhc_id: al132020}
+  ida: {landfall: 2021-08-29, region: louisiana, nhc_id: al092021}
+  ian: {landfall: 2022-09-28, region: florida, nhc_id: al092022}
+  nicole: {landfall: 2022-11-10, region: florida, nhc_id: al172022}
+  idalia: {landfall: 2023-08-30, region: florida, nhc_id: al102023}
+  debby: {landfall: 2024-08-05, region: florida, nhc_id: al042024, landfall_status: tropical_storm}
+  helene: {landfall: 2024-09-26, region: florida, nhc_id: al092024}
+  milton: {landfall: 2024-10-09, region: florida, nhc_id: al142024}
+  beryl: {landfall: 2024-07-08, region: texas, nhc_id: al022024}

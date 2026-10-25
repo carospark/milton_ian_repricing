@@ -27,6 +27,8 @@ data/derived/*
 !data/derived/coverage_summary_milton.csv
 !data/derived/coverage_summary_ian.csv
 !data/derived/milton_contracts.csv
+!data/derived/hurricane_coverage_comparison.csv
+!data/derived/comparison_contracts.csv
 
 # Notebook outputs
 notebooks/*.html

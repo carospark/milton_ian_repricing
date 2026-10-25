@@ -1,0 +1,2 @@
+storm,window_start,window_end,unique_traded_cusips,eligible_strict_high_cusips,eligible_distinct_deals,eligible_at_least_3_customer_trades_each_side,eligible_florida_hurricane_exposed,eligible_unexposed,eligible_other_hurricane_region,eligible_unknown_ambiguous_exposure,all_florida_hurricane_exposed,all_unexposed,all_other_hurricane_region,all_unknown_ambiguous_exposure,eligible_explicit_class_matches,extract_interdealer_trades
+ian,2022-08-14,2022-11-27,106,81,64,7,40,20,12,9,45,34,14,13,67,0
