@@ -1,6 +1,8 @@
-# Ian / Milton / Idalia / Beryl repricing study
+# Hurricane repricing study
 
 Descriptive catastrophe-bond repricing around hurricane forecasts, landfall and loss developments.
+
+![Visual summary of completed work and findings](figures/hurricane_repricing_summary.png)
 The selected sample is **Ian, Milton, Idalia and Beryl**, recorded in
 `config_study.yaml`. Research roles:
 
@@ -21,8 +23,8 @@ explicit `public_*.csv` aggregate tables under `data/derived/`.
 GitHub displays HTML source; download the HTML and adjacent `figures/` directory
 and open it locally to read the formatted briefing. No website deployment is configured.
 
-The original plan is `docs/Hurricane_Repricing_Study_Plan.pdf`; the current sample
-is governed by `config_study.yaml`. Coverage has been counted and descriptive
+The original study-plan PDF is retained locally and ignored by Git; the current
+sample is governed by `config_study.yaml`. Coverage has been counted and descriptive
 comparisons built. No regression or causal storm-effect claim is supported yet.
 
 ## Current findings

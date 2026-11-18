@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "milton_ian"
 version = "0.1.0"
-description = "CUSIP-level descriptive hurricane repricing study: Ian, Milton, Idalia and Beryl"
+description = "Hurricane repricing study: Ian, Milton, Idalia and Beryl"
 requires-python = ">=3.9"
 dependencies = ["pandas>=1.5", "pyyaml>=6", "pyshp>=2.3,<3"]
 

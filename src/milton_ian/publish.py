@@ -29,7 +29,8 @@ def run():
     nhc[['storm','advisory_number','issue_time_utc','corrected','current_max_sustained_wind_knots',
          'near24h_forecast_wind_knots','near24h_actual_lead_hours','forecast_point_count','source_url']].to_csv(out/'public_nhc_intensity.csv',index=False)
     pd.read_csv(out/'study_loss_audit_summary.csv').to_csv(out/'public_loss_audit_summary.csv',index=False)
-    print('Exported seven aggregate/official-NOAA tables; detailed data remains ignored')
+    pd.read_csv(out/'beryl_mapping_review_summary.csv').to_csv(out/'public_beryl_scope_summary.csv',index=False)
+    print('Exported eight aggregate/official-NOAA tables; detailed data remains ignored')
 
 
 if __name__=='__main__': run()

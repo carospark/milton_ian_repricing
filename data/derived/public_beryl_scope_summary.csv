@@ -1,0 +1,6 @@
+reviewed_texas_scope,cusips,event8_overlap_cusips,repeat_event8_overlap_cusips
+broad_us_scope_weights_unverified,8,8,2
+explicit_texas,3,2,0
+no_us_named_storm_peril,1,0,0
+regional_scope_outside_texas,10,9,0
+texas_explicitly_excluded,1,0,0

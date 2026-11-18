@@ -45,7 +45,9 @@ def run():
            ['-m','milton_ian.forecast'],['-m','milton_ian.study'],['-m','milton_ian.review'],
            ['-m','milton_ian.focus'],['-m','milton_ian.loss'],['-m','milton_ian.match'],
            ['-m','milton_ian.repricing'],['-m','milton_ian.publish']]
-    if args.figures: steps.append(['scripts/build_context_figure.py'])
+    if args.figures:
+        steps.append(['scripts/build_context_figure.py'])
+        steps.append(['scripts/build_visual_summary.py'])
     steps.append(['scripts/build_story_report.py'])
     for step in steps:
         print('\nRunning '+' '.join(step),flush=True)

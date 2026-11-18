@@ -11,7 +11,7 @@ FORBIDDEN={'cusip','cusip_id','trade_date','trade_time','volume','source_cache',
 
 def run():
     files=list((ROOT/'data/derived').glob('public_*.csv'))
-    if len(files)!=7: raise ValueError('Unexpected public export set')
+    if len(files)!=8: raise ValueError('Unexpected public export set')
     for file in files:
         frame=pd.read_csv(file)
         if FORBIDDEN & set(frame.columns): raise ValueError(f'Detailed field in public export: {file}')
