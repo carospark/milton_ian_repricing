@@ -24,8 +24,7 @@ The summary includes interactive forecast charts, storm profiles, coverage chart
 timing sensitivity controls, a price-comparison explorer, loss evidence and next steps.
 It is one self-contained HTML file with no image or network dependencies.
 GitHub displays HTML source; download the HTML and open it locally to use the
-formatted report and controls. The earlier briefing URL is also rebuilt with the
-same page. No website deployment is configured.
+formatted report and controls. No website deployment is configured.
 
 The original study-plan PDF is retained locally and ignored by Git; the current
 sample is governed by `config_study.yaml`. Coverage has been counted and descriptive

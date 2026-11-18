@@ -161,3 +161,8 @@ User clarified the summary should be scrollable HTML with more information. Repl
 Corrected earlier narrative: Helene is outside Beryl plus60 days, not inside its late window. Existing date-based competing-landfall calculations were already correct and are unchanged.
 
 Validation: 24 unit tests pass, including standalone HTML structure, internal anchor integrity, absence of external assets and both output URLs matching the generator. Node syntax check passed. Real headless Chrome verified 14 interaction/layout checks at a true 430px phone viewport (page width 430, scroll height 16147, no page-wide horizontal overflow). Desktop and phone renderings visually inspected, including price explorer. Browser used only isolated temporary profiles and was closed after checks. Aggregate-publication validation and whitespace checks pass. Temporary QA screenshots are not deliverables or tracked repository assets. Detailed data remains local.
+
+
+## Removed redundant options report (2026-11-18)
+
+Removed docs/Hurricane_Options_Story.html at user request. The generator now writes only docs/Hurricane_Repricing_Summary.html. Updated publication validation, README, historical comparison link and report tests; regression check ensures the removed options file stays absent. Historical notes above describe prior states.

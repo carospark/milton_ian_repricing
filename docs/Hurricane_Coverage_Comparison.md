@@ -2,7 +2,7 @@
 
 Historical twelve-storm screen. The active research sample is Ian, Milton, Idalia
 and Beryl; current rebuilt counts and source-review qualifications are in
-[the research briefing](Hurricane_Options_Story.html). The table below is retained
+[the research briefing](Hurricane_Repricing_Summary.html). The table below is retained
 as the earlier screening snapshot and can differ from refreshed sibling inputs.
 
 This targeted screen compares TRACE and archive coverage for eleven hurricane landfalls in Florida or the US Gulf/Atlantic during 2016–2024, plus Texas landfall Beryl. It retains Ian and Milton. Selection was based on landfall geography and usable TRACE coverage, not bond-price changes. Debby is included as a competing event and was a tropical-storm landfall. This is not an exhaustive landfall census.

@@ -17,7 +17,7 @@ def run():
         if FORBIDDEN & set(frame.columns): raise ValueError(f'Detailed field in public export: {file}')
     pairs=pd.read_csv(ROOT/'data/derived/public_repricing_summary.csv')
     assert pairs.loc[pairs.paired_cusips.lt(5),'median_change_price_points'].isna().all()
-    report=(ROOT/'docs/Hurricane_Options_Story.html').read_text()
+    report=(ROOT/'docs/Hurricane_Repricing_Summary.html').read_text()
     assert not re.search(r'\b[A-Z0-9]{8}\d\b',report), 'Possible individual CUSIP in public report'
     assert 'scope_evidence' not in report and 'cusip_id' not in report
     tracked=subprocess.check_output(['git','ls-files'],cwd=ROOT,text=True).splitlines()

@@ -32,7 +32,7 @@ class ReportTests(unittest.TestCase):
         data=json.loads(re.search(r'const DATA=(.*?);\nconst names=',page,re.S)[1])
         self.assertEqual({r['storm'] for r in data['coverage']},{'ian','milton','idalia','beryl'})
 
-    def test_both_published_urls_match_the_generator(self):
+    def test_summary_matches_generator_and_options_file_is_absent(self):
         expected=report.build()
-        for filename in ('Hurricane_Repricing_Summary.html','Hurricane_Options_Story.html'):
-            self.assertEqual((ROOT/'docs'/filename).read_text(),expected)
+        self.assertEqual((ROOT/'docs/Hurricane_Repricing_Summary.html').read_text(),expected)
+        self.assertFalse((ROOT/'docs/Hurricane_Options_Story.html').exists())

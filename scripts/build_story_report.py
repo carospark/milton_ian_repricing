@@ -19,8 +19,8 @@ def build():
 
 def run():
     page=build()
-    for filename in ('Hurricane_Repricing_Summary.html','Hurricane_Options_Story.html'):
-        path=ROOT/'docs'/filename; path.write_text(page,encoding='utf-8'); print(path)
+    path=ROOT/'docs/Hurricane_Repricing_Summary.html'
+    path.write_text(page,encoding='utf-8'); print(path)
 
 
 if __name__=='__main__': run()
