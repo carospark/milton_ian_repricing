@@ -142,3 +142,8 @@ Full offline pipeline with figures completed successfully at 2026-11-18T10:39:46
 ## GitHub credential constraint (2026-11-18)
 
 Initial push was rejected by GitHub because the OAuth credential lacks workflow scope for creating .github/workflows/tests.yml. Verified origin still had no refs. Moved the authored workflow to ci/offline-checks.yml as an inactive template, documented the restriction, and updated the unpublished release commit before retrying. No repository visibility, auth scopes or credentials changed. Local 22-test suite and stable full rebuild have passed; remote Actions cannot be claimed as run.
+
+
+## Verified GitHub publication (2026-11-18)
+
+Published analysis commit fe5a25a7e3be71809f2a30e7d5caaf6f36895255 to https://github.com/carospark/milton_ian_repricing on main. Verified git ls-remote SHA equals local HEAD and GitHub default branch is main. Working tree was clean after publication. Workflow remains an inactive ci/offline-checks.yml template because the credential lacks workflow scope; no remote CI success claimed. Local 22 tests, stable full offline rebuild, compile, public-artifact validation and whitespace checks passed. Raw data, source caches, frozen SQLite snapshot and detailed audit outputs were not published. This final publication record is committed separately after the analysis release.
