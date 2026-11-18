@@ -1,0 +1,5 @@
+storm,landfall,eligible_cusips,three_customer_trades_each_side,event8_customer_trade_days_total,event8_repeated_customer_cusips,specific_contracts_non_null_window,specific_overlap_cusips,eligible_customer_trades_window,eligible_customer_trades_event8,eligible_customer_cusip_days_event8,nhc_advisories
+ian,2022-09-28,81,7,5,0,0,0,440,19,5,38
+milton,2024-10-09,89,4,4,0,0,0,719,8,4,23
+idalia,2023-08-30,124,12,11,2,2,9,702,22,11,29
+beryl,2024-07-08,176,31,41,8,2,23,1437,103,41,50

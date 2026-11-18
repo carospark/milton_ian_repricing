@@ -1,3 +1,7 @@
+# Current status: four-storm research pipeline
+
+The selected sample is Ian, Milton, Idalia and Beryl. The dated updates at the end supersede historical recommendations and availability statements below. The public briefing is aggregate-only; detailed local examples are preserved under ignored data/derived/Hurricane_Options_Story_private.html.
+
 # Milton and Ian research handoff
 
 ## Objective and scope
@@ -10,7 +14,7 @@ At session start on 2026-10-25 the project was at clean scaffold commit `aaf4c04
 
 ## Inputs and schemas
 
-Read-only repositories: `/Users/caropark/cat-bond-issuance` and `/Users/caropark/cat-bond-flow-analysis`. The project readers/config specify TRACE trade-level `trace_trades_clean.csv`, strict bridge `data/bridge.csv`, separate programme bridge `bridge_program.csv`, deals/perils/triggers, `issuance/data/tranches.csv`, N-PORT holdings/title data, hazard-region mapping, weekly market activity and prediction-market archive. Prediction SQLite is `/Users/caropark/cat-bond-flow-analysis/data/raw/tier1/prediction_market_history.sqlite3`, opened read-only. Flow source was traced to `src/event_check.py::weekly_market` and `build_deal_panel.py::aggregate_market_classes`.
+Read-only repositories: `/Users/caropark/projects/cat-bond-issuance` and `/Users/caropark/projects/cat-bond-flow-analysis`. The project readers/config specify TRACE trade-level `trace_trades_clean.csv`, strict bridge `data/bridge.csv`, separate programme bridge `bridge_program.csv`, deals/perils/triggers, `issuance/data/tranches.csv`, N-PORT holdings/title data, hazard-region mapping, weekly market activity and prediction-market archive. Prediction SQLite is `/Users/caropark/cat-bond-flow-analysis/data/raw/tier1/prediction_market_history.sqlite3`, opened read-only. Flow source was traced to `src/event_check.py::weekly_market` and `build_deal_panel.py::aggregate_market_classes`.
 
 Verified source facts: strict bridge keys are deal URL and CUSIP; no duplicate bridge pairs in the audited input. High/medium/low rows: 870/322/4. `title_evidence == propagated` marks propagated pairs. TRACE cleaner documentation and source use confirm `contra_party=C` customer, `D` inter-dealer; `A` and `T` are left other/unknown. `dealer_side=S` means dealer sold/customer bought; `B` means customer sold. The audited TRACE extract has 68,759 rows (C 67,049; A 1,011; D 698; T 1). Event-window inter-dealer count is zero for Milton and Ian; this describes this extract only. N-PORT title classes are parser-supported mappings, not hand verification. Unresolved/conflicting class stays unknown; no unsupported EL or attachment probability is assigned.
 
@@ -63,6 +67,12 @@ No NHC forecast or wind-probability files were found in local project, source re
 
 Next: (1) inventory and validate a small NHC advisory/WSP panel for Beryl, Idalia, Milton, Ian and Ida; preserve release time, location and cumulative horizon; (2) manually verify tranche/class and deal exposure for CUSIPs prioritized by observed relevant exposure; (3) decide whether the expectations question requires market-implied named-storm probability specifically, and only then plan targeted additional market collection. Maintain the distinction between “not in the local archive,” “not searched,” and “confirmed unavailable.”
 
+## Story briefing deliverable (2026-10-26)
+
+Created `docs/Hurricane_Options_Story.html`, a self-contained HTML briefing with the twelve-storm comparison, selected literal TRACE trade records for the Milton and Ian event intervals, one-row-per-CUSIP summary teasers, and archived Yes-outcome observation teasers for Beryl, Idalia and the Tampa seasonal proxy. It is generated from the committed comparison/contract outputs plus a read-only refresh of the configured TRACE sample and prediction SQLite. The file includes scope, interpretation and selection limitations; it deliberately shows only representative rows, not the complete licensed/trade-derived sample. It is under `docs/`, outside the existing `notebooks/*.html` ignore pattern.
+
+Rebuild prerequisites and command: run `./.venv/bin/python -m milton_ian.sample` first, then run `PYTHONPATH=src ./.venv/bin/python scripts/build_story_report.py`. HTML parser sanity check confirmed eight tables and 57 table rows. Main interpretation: Beryl has the best local storm-specific market/bond-date overlap, but repeat event-week overlap is only two CUSIPs; Milton’s local contract histories are seasonal proxies; Ian has source loss evidence while Ida has wider bond coverage and also merits an audit. The sample teasers use actual records and clearly separate broad-window price ranges from dated trade observations.
+
 ## Confirmed versus unresolved
 
 Confirmed: original scaffold state/commit; source schemas and trade-side definitions; bridge eligibility and uniqueness; Milton/Ian coverage counts; trade and value reconciliation; eight-day configured interval; source definition and volume reconciliation of chart week zero; local archive search outcome; contract probability outcome semantics and date overlap; no NHC files in the local inventories checked; comparison tests passed.
@@ -74,3 +84,61 @@ Unresolved: full NHC archive snapshot inventory and QA; any delisted/uncollected
 ## Session continuity instructions
 
 At session start, read this handoff and verify relevant files/state before relying on it. Before ending, update this handoff with completed work, reproducible commands, verified findings, unresolved items and next actions. Do not place personal user-level context here.
+
+
+## Four-storm study started (2026-11-17)
+
+Selected research sample: Ian, Milton, Idalia and Beryl only, defined in config_study.yaml. Historical twelve-storm comparison retained for screening and competing-event context. Existing working-tree changes to config.yaml and this handoff were preserved.
+
+Rebuilt sample and comparison from configured read-only sources. Fixed story generation to show only selected storms and corrected full-window versus eight-day trade-total labels, Milton example count (eight trades, four dates), and inclusive window length (106 days). README now distinguishes proposed research questions from findings.
+
+Added milton_ian.nhc: official forecast-advisory cache with source URL, SHA256, number, stated UTC issue time and correction flag. Acquired all index-listed forecast advisories: Ian 1-38, Milton 1-23, Idalia 1-29, Beryl 1-50 (140 total). Three are corrected archive versions; issue times do not establish first public availability. WSP products not yet acquired.
+
+Added milton_ian.study: gitignored observed-trade panel, information-event inventory, four-storm coverage, mapping review queue and reconciliation JSON. Timeline contains 808 events. Eligible customer trades in event-8: Ian 19 on 5 CUSIP-days; Milton 8 on 4; Idalia 22 on 11; Beryl 103 on 41. Full-window eligible customer trades: 440, 719, 702, 1443 respectively. These are not all-extract trade counts.
+
+Reproduce: ./.venv/bin/python -m milton_ian.compare; ./.venv/bin/python -m milton_ian.sample; ./.venv/bin/python -m milton_ian.nhc; ./.venv/bin/python -m milton_ian.study; ./.venv/bin/python scripts/build_story_report.py. All ten unittest cases passed; observed trades reconcile to CUSIP details and event-day coverage; HTML parser and whitespace checks passed.
+
+Next: WSP inventory and numerical forecast parsing; verify TRACE clock semantics before intraday joins; manually verify prioritized CUSIP/tranche/exposure mappings. The current timeline is an inventory, not a verified information-before-trade match or causal study. Detailed outputs and raw caches remain gitignored. No source-repository writes, commits, or regressions.
+
+
+## Wind-probability acquisition and Beryl source review (2026-11-17)
+
+Added milton_ian.wsp with pyshp dependency. Cached official GIS archive index and 141 half-degree 0-120h cumulative WSP ZIPs over nine UTC dates per selected storm (-7 through +1). Ian/Milton/Idalia each have 36/36 expected cycles; Beryl has 33/36. July 9 2024 06/12/18 UTC are not listed in cached index, not confirmed globally unavailable. ZIP thresholds 34/50/64 knots sampled at two prespecified exact grid points per storm: 846 rows, 471 observed and 375 missing. Missing points and absent entire threshold layers are not imputed zero. Source metadata states these are ALL-BASIN, ALL-ACTIVE-STORM products, not named-storm probabilities. Cycle initialization is not publication time. Location samples are contextual, not bond exposure weights. Threshold monotonicity passes wherever both values are observed.
+
+Added milton_ian.review. Read cached Artemis deal prose in issuance/raw without source writes. Original 23 Beryl same-date-overlap bonds: explicit Texas scope 3; broad US scope/weights unverified 8; regional scope outside Texas 10; Texas excluded 1; no US named-storm peril 1. Both repeat event-week bonds are in broad-US category, neither in explicit Texas. Evidence, hashes, bridge rows and dated N-PORT class support stored in gitignored beryl_mapping_source_review.csv. Broad-screen misclassifications include Texas-only Alamo as other-region, Louisiana-only Bayou as relevant, and Astro broad-US peril text omitting southeastern state scope. Montoya parsed trigger says Indemnity but cached prose says PCS industry loss index: unresolved conflict. No hand-verified CUSIP/tranche/exposure pairs claimed; offering terms, amendments and active coverage remain unverified. Original coverage table intentionally retained as historical broad screen.
+
+Added milton_ian.match. Only actual named-market Yes observations on preceding Eastern date matched to customer trades; no same-day information, forward fill, or carry across missing dates. Output has explicit trade-row IDs for deduplication across contracts. Beryl window: 81 distinct customer trades/27 CUSIPs; event-8 79/26; prelandfall event-8 only 2 trades/1 CUSIP. Idalia: 18 trades/8 CUSIPs, all event-8; prelandfall 6 trades/3 CUSIPs. These timing-rule samples differ from original 23/9 same-date samples; source review is not complete for newly matched bonds. SOURCE cleaner proves trade_time maps execution-time field, not report time; timezone still unverified. No intraday joins asserted.
+
+Story generator and HTML updated with acquisition/review/timing sections; README has commands. Reproduce after prior sample/study steps: ./.venv/bin/python -m milton_ian.wsp --download; ./.venv/bin/python -m milton_ian.review; ./.venv/bin/python -m milton_ian.match; ./.venv/bin/python scripts/build_story_report.py. Twelve unittests pass, including missing-layer handling and same-day/stale observation exclusion. Next: establish execution clock timezone and publication times, targeted offering/lifecycle review for Texas bonds and newly matched sample, then comparable geography review for Ian/Milton/Idalia. No regressions or source-repository writes.
+
+
+## Expanded analysis and public release preparation (2026-11-18)
+
+Added documented Eastern execution-clock conversion (FINRA corporate/agency TRACE specification https://www.finra.org/sites/default/files/CA-CTCI-specs-v3.4.pdf; cleaner maps trd_exctn_dt/tm). Intraday named-market matching excludes timestamp ties/future observations and has 1/6/24-hour freshness sensitivity. Prelandfall calendar-day event-8 support remains Beryl 2 trades/1 CUSIP and Idalia 6/3, including at 24 hours. Day-zero intraday landfall classification is not attempted.
+
+Added forecast.py: 1,022 forecast-valid-time records across 140 advisories, including explicit dissipation records with missing values. Month rollover, forecast completeness and correction provenance checked. Added official-NOAA context figure and visually inspected its rendered PNG. GIS remains all-basin, all-active-storm with initialization rather than availability time.
+
+Added focus.py: targeted source-prose geography checks across all four storms using both-side trading/market overlap, never price changes. These remain secondary-source geography reviews, not hand-verified CUSIP/tranche/active-risk-period assignments. Pending assets remain labeled. Added repricing.py: same-CUSIP/customer-side daily medians then window medians, reference -45/-8, anticipation -7/-1, impact 0/7, aftermath 8/30, late 31/60. Support sensitivities one/two observed dates each window; catalogued competing-landfall sensitivity. Public price-change statistics suppressed below five pairs. Changes are price points, not total returns or causal effects.
+
+Added loss.py: source-label versus prose audit. Ian: 13 rows, 11 single-storm and 2 multi-event, six provisional-prose rows, one total-loss/provisional-prose conflict. Two terminal-loss prose candidates remain but neither has exact source-class support in eligible sample. Milton: three source rows, one single-storm, two multi-event; no terminal candidate. No Idalia/Beryl rows in this source is not evidence of no losses. No deal-level outcome propagated to every class. Announcement timestamps remain unavailable.
+
+Public GitHub release: user explicitly requested publication to origin. Repository is public and remote initially has no refs. Preserve detailed original HTML at ignored data/derived/Hurricane_Options_Story_private.html and old detailed generator at ignored data/cache/build_story_report_private.py. Replaced public story generator with aggregate-only inputs. Seven public CSV exports, official NOAA figure, code/tests and documentation are publishable; raw trades, CUSIP-level paths, source excerpts, holdings and caches remain ignored. Public artifact checker enforces schemas, small-cell suppression and tracked-file allowlist. No GitHub Pages deployment requested.
+
+Added offline-by-default scripts/run_study.py (--acquire for NHC, --figures optional) and GitHub Actions offline tests. Runner fingerprints small sources and compares source size/mtime across rebuild; no source changes permitted within a release rebuild. Source refresh on Nov 18 reduced Beryl eligible count to 176 from historical 177 (event8 unchanged: 103 customer prints/41 CUSIP-days); historical twelve-storm Markdown labeled as snapshot. Current briefing and public CSVs are authoritative for refreshed counts.
+
+Validation so far: 21 unittests pass, compileall and whitespace checks pass; full stable-source rebuild/publication and remote CI verification recorded in subsequent update. Remaining research: offering/lifecycle/amendment evidence, source geography and class review for pending assets, publication/version histories, exact landfall times for day-zero phase classification, loss-announcement chronology. No pooled model yet. No source-repository writes or CSS/team-brain mutations.
+
+
+## Concurrent prediction archive isolated (2026-11-18)
+
+Stable-source check correctly rejected a full rebuild because the separate prediction collector changed the live SQLite and WAL during analysis. Did not stop or modify that process. Added snapshot.py and a test: freeze all contract metadata and study-relevant prices in a single source read-only SQLite transaction. Local snapshot contains 330,689 metadata rows, 465 selected price contracts and 245,969 price observations; excludes unrelated price histories, raw price JSON and execution tables. SHA256 and explicit scope recorded in ignored prediction_snapshot_manifest.json. Runner now reuses this snapshot and sets HURRICANE_PREDICTION_DB for subprocesses; --refresh-prediction-snapshot explicitly captures a new view. Source CSVs remain read in place and fingerprinted. Snapshot and all detailed outputs remain ignored. Twenty-two tests pass including source file unchanged after snapshot. Stable full rebuild now being checked against frozen input.
+
+
+## Release validation completed (2026-11-18)
+
+Full offline pipeline with figures completed successfully at 2026-11-18T10:39:46Z using the frozen prediction view. study_run_manifest.json reports sources_stable_during_run=true; all required source CSV fingerprints and snapshot identity stayed unchanged. Twenty-two unit tests pass; compileall, public-artifact schema/suppression checks, HTML parsing and whitespace checks pass. Public NOAA figure was visually inspected. Git staging allowlist contains code, tests, aggregate exports, official NOAA figure and aggregate-only briefing; no raw caches, detailed bond records, machine history or source excerpts. Publishing to origin main and checking remote CI follows this validation. Exact commit SHA and CI results are discoverable from Git/GitHub.
+
+
+## GitHub credential constraint (2026-11-18)
+
+Initial push was rejected by GitHub because the OAuth credential lacks workflow scope for creating .github/workflows/tests.yml. Verified origin still had no refs. Moved the authored workflow to ci/offline-checks.yml as an inactive template, documented the restriction, and updated the unpublished release commit before retrying. No repository visibility, auth scopes or credentials changed. Local 22-test suite and stable full rebuild have passed; remote Actions cannot be claimed as run.

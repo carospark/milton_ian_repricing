@@ -17,6 +17,8 @@ Sources (as found 2026-10-25):
 from __future__ import annotations
 
 import sqlite3
+import os
+from pathlib import Path
 
 import pandas as pd
 
@@ -61,7 +63,10 @@ def read_nport_holdings() -> pd.DataFrame:
 
 
 def _connect() -> sqlite3.Connection:
-    return sqlite3.connect(f"file:{require('prediction_db')}?mode=ro", uri=True)
+    override=os.environ.get('HURRICANE_PREDICTION_DB')
+    path=Path(override) if override else require('prediction_db')
+    if not path.exists(): raise FileNotFoundError(path)
+    return sqlite3.connect(f"file:{path}?mode=ro", uri=True)
 
 
 def read_contracts(classification_prefix: str | None = "hurricane_or_named_storm") -> pd.DataFrame:

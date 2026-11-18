@@ -29,6 +29,17 @@ data/derived/*
 !data/derived/milton_contracts.csv
 !data/derived/hurricane_coverage_comparison.csv
 !data/derived/comparison_contracts.csv
+!data/derived/public_study_coverage.csv
+!data/derived/public_timing_summary.csv
+!data/derived/public_wsp_inventory.csv
+!data/derived/public_focus_review_summary.csv
+!data/derived/public_repricing_summary.csv
+!data/derived/public_nhc_intensity.csv
+!data/derived/public_loss_audit_summary.csv
+
+# Machine-local history and older detailed reports are not publication artifacts.
+docs/.Rhistory
+docs/Hurricane_Coverage_Comparison.html
 
 # Notebook outputs
 notebooks/*.html

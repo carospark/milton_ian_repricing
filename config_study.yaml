@@ -1,0 +1,4 @@
+# Research sample. Other storms remain in config_comparison.yaml solely for
+# historical screening and competing-event flags.
+storms: [ian, milton, idalia, beryl]
+pilot: beryl
