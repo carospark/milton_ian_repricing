@@ -47,7 +47,6 @@ def run():
            ['-m','milton_ian.repricing'],['-m','milton_ian.publish']]
     if args.figures:
         steps.append(['scripts/build_context_figure.py'])
-        steps.append(['scripts/build_visual_summary.py'])
     steps.append(['scripts/build_story_report.py'])
     for step in steps:
         print('\nRunning '+' '.join(step),flush=True)

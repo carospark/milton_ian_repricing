@@ -2,7 +2,7 @@
 
 Descriptive catastrophe-bond repricing around hurricane forecasts, landfall and loss developments.
 
-![Visual summary of completed work and findings](figures/hurricane_repricing_summary.png)
+[Open the scrollable research summary](docs/Hurricane_Repricing_Summary.html)
 The selected sample is **Ian, Milton, Idalia and Beryl**, recorded in
 `config_study.yaml`. Research roles:
 
@@ -17,11 +17,15 @@ The selected sample is **Ian, Milton, Idalia and Beryl**, recorded in
 The twelve-storm comparison remains a historical coverage screen and a source of
 competing-event flags; it does not expand the selected research sample.
 
-Start with the [current research briefing](docs/Hurricane_Options_Story.html),
-the [forecast context figure](figures/nhc_information_context.png), and the
+Start with the [scrollable visual summary](docs/Hurricane_Repricing_Summary.html)
+and the
 explicit `public_*.csv` aggregate tables under `data/derived/`.
-GitHub displays HTML source; download the HTML and adjacent `figures/` directory
-and open it locally to read the formatted briefing. No website deployment is configured.
+The summary includes interactive forecast charts, storm profiles, coverage charts,
+timing sensitivity controls, a price-comparison explorer, loss evidence and next steps.
+It is one self-contained HTML file with no image or network dependencies.
+GitHub displays HTML source; download the HTML and open it locally to use the
+formatted report and controls. The earlier briefing URL is also rebuilt with the
+same page. No website deployment is configured.
 
 The original study-plan PDF is retained locally and ignored by Git; the current
 sample is governed by `config_study.yaml`. Coverage has been counted and descriptive
