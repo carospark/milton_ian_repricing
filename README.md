@@ -3,6 +3,10 @@
 Descriptive catastrophe-bond repricing around hurricane forecasts, landfall and loss developments.
 
 [Open the scrollable research summary](docs/Hurricane_Repricing_Summary.html)
+
+[Alternative compact status-sheet version](docs/Hurricane_Repricing_Status.html),
+arranged as a phase track, checklist/coverage band, findings, charts and next actions.
+The original narrative summary is preserved.
 The selected sample is **Ian, Milton, Idalia and Beryl**, recorded in
 `config_study.yaml`. Research roles:
 
@@ -89,6 +93,7 @@ Public checkout, no licensed inputs needed:
 python3 -m venv .venv && ./.venv/bin/python -m pip install -e .
 ./.venv/bin/python -m unittest discover -s tests -v
 ./.venv/bin/python scripts/build_story_report.py
+./.venv/bin/python scripts/build_status_report.py
 ./.venv/bin/python scripts/check_public_artifacts.py
 ```
 

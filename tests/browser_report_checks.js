@@ -11,6 +11,7 @@
     assert(cell(1).textContent.includes('+0.70')&&cell(1).textContent.includes('5 paired bonds'),'default strict Beryl price result');
     select('price-days','1');
     assert(cell(1).textContent.includes('+0.03')&&cell(1).textContent.includes('33 paired bonds'),'date-support sensitivity updates');
+    if(document.getElementById('price-chart'))assert(document.getElementById('price-chart').textContent.includes('+0.03'),'status price chart follows support control');
     select('price-side','sell');
     assert(cell(1).textContent.includes('+0.00'),'customer side updates');
     select('price-storm','milton');select('price-days','2');select('price-restriction','no_other_catalog_landfall');
@@ -21,6 +22,13 @@
     assert([...document.querySelectorAll('#price-grid strong')].every(e=>e.textContent==='—'),'small cells remain suppressed');
     select('forecast-storm','ian');
     assert(document.querySelector('#forecast-chart svg').getAttribute('aria-label').includes('Ian'),'forecast chart changes storm');
+    const toggle=document.querySelector('button[data-table]');
+    if(toggle){
+      const panel=document.getElementById(toggle.dataset.table);
+      toggle.click();assert(!panel.hidden&&toggle.getAttribute('aria-expanded')==='true','status data-table toggle opens');
+      toggle.click();assert(panel.hidden&&toggle.getAttribute('aria-expanded')==='false','status data-table toggle closes');
+      assert(document.querySelectorAll('#forecast-table tbody tr').length===38,'forecast table follows storm selector');
+    }
     document.querySelector('[data-age="1"]').click();
     assert(document.querySelector('[data-age="1"]').getAttribute('aria-pressed')==='true','market-age control updates');
     assert(document.querySelector('#timing-table').textContent.includes('Beryl'),'timing table populated');

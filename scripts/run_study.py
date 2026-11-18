@@ -48,6 +48,7 @@ def run():
     if args.figures:
         steps.append(['scripts/build_context_figure.py'])
     steps.append(['scripts/build_story_report.py'])
+    steps.append(['scripts/build_status_report.py'])
     for step in steps:
         print('\nRunning '+' '.join(step),flush=True)
         subprocess.run([sys.executable,*step],cwd=ROOT,env=env,check=True)

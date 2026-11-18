@@ -166,3 +166,12 @@ Validation: 24 unit tests pass, including standalone HTML structure, internal an
 ## Removed redundant options report (2026-11-18)
 
 Removed docs/Hurricane_Options_Story.html at user request. The generator now writes only docs/Hurricane_Repricing_Summary.html. Updated publication validation, README, historical comparison link and report tests; regression check ensures the removed options file stays absent. Historical notes above describe prior states.
+
+
+## Separate compact status-sheet edition (2026-11-18)
+
+Created docs/Hurricane_Repricing_Status.html at user request, following the compact layout/style of the sibling project-status HTML: 1040px scrolling sheet, small KPI cards, qualitative three-phase track, two-column checklist/coverage band, findings, signed repricing chart, forecast chart, table toggles and two-column next actions. Light/dark themes follow system preference. Copied no sibling project figures, task assignments or personal context. Original docs/Hurricane_Repricing_Summary.html is byte-for-byte unchanged.
+
+Added scripts/build_status_report.py and scripts/templates/research_status.html. The builder reads the original rendered summary runtime/data and writes only the alternate file. Reuses existing aggregate data and filter logic; adds a signed price chart and tables synchronized to selectors. Original data embedded identically in both versions; no source research results altered. README links both editions; runner builds status after the original; inactive CI template and public checks cover both.
+
+Validation: 26 unit tests pass, including original-preservation and data-equality checks, unique anchors, self-contained assets and generated status output. Node syntax check passed. Real browser verified 18 control/layout checks, including signed chart updates and table toggles, on a fresh 430px phone viewport (page width 430; no overflow). Desktop light/dark and phone screenshots visually inspected. Public-artifact and whitespace checks pass. Isolated browser closed; screenshots stay temporary and untracked. New version published separately; original file preserved.
